@@ -1,6 +1,0 @@
-/Users/langelog/Desktop/lnn/build/CMakeFiles/rebuild_cache.dir
-/Users/langelog/Desktop/lnn/build/CMakeFiles/edit_cache.dir
-/Users/langelog/Desktop/lnn/build/CMakeFiles/lnnTester.dir
-/Users/langelog/Desktop/lnn/build/libraries/lnn/CMakeFiles/rebuild_cache.dir
-/Users/langelog/Desktop/lnn/build/libraries/lnn/CMakeFiles/edit_cache.dir
-/Users/langelog/Desktop/lnn/build/libraries/lnn/CMakeFiles/lnn.dir
