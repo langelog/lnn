@@ -1,13 +1,13 @@
 
 #include <iostream>
 
-#include <Neuron.h>
+#include <NeuralNetwork.h>
 
 using namespace std;
 
 int main(void) {
-	cout << "Hello World!" << endl;
-	Neuron n;
+	NeuralNetwork testNet("/Users/langelog/Git/lnn/examples/data/model_OR.lnn");
+
 	
 	return 0;
 }

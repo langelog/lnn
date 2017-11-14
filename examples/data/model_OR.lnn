@@ -1,0 +1,20 @@
+{
+	"Name": "OR",
+	"Layers": [
+		{
+			"Initializer": "RAND",
+			"Bias": 1.0,
+			"Neurons": 2
+		},
+		{
+			"Initializer": "RAND",
+			"Bias": 1.0,
+			"Neurons": 3
+		},
+		{
+			"Initializer": "RAND",
+			"Bias": 1.0,
+			"Neurons": 1
+		}
+	]
+}
