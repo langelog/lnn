@@ -2,17 +2,22 @@
 	"Name": "OR",
 	"Layers": [
 		{
-			"Initializer": "RAND",
+			"LayerType": "Input",
 			"Bias": 1.0,
 			"Neurons": 2
 		},
 		{
-			"Initializer": "RAND",
+			"LayerType": "Hidden",
+			"Initializer": {
+				"Type": "Normal",
+				"Mean": 0.0,
+				"Deviation": 1.0
+			},
 			"Bias": 1.0,
 			"Neurons": 3
 		},
 		{
-			"Initializer": "RAND",
+			"LayerType": "Output",
 			"Bias": 1.0,
 			"Neurons": 1
 		}

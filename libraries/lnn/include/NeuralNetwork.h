@@ -5,6 +5,8 @@
 #include <json.hpp>
 #include <string>
 #include <fstream>
+#include <vector>
+#include <cassert>
 
 #include "Neuron.h"
 
@@ -17,7 +19,8 @@ public:
 
 private:
 	json model;
-	Neuron* ns;
+	//Neuron* ns;
+	vector<vector<Neuron*> > neurons;
 
 };
 
