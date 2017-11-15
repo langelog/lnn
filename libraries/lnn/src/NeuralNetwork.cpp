@@ -1,6 +1,7 @@
 #include "NeuralNetwork.h"
 
 NeuralNetwork::NeuralNetwork(string modelPath) {
+	isLoaded = false;
 	cout << "Parsing from " << modelPath << endl;
 	ifstream i(modelPath);
 	i >> model;
@@ -42,6 +43,7 @@ NeuralNetwork::NeuralNetwork(string modelPath) {
 
 		for(unsigned int i_neuron=0; i_neuron<n_neurons; i_neuron++) {
 			if(layer_type == "Input") {
+				number_inputs = n_neurons;
 				n_inputs = 1; // number of inputs per neuron
 				//cout << "Neuron with " << n_inputs << " inputs" << endl;
 				if(initer_type == "Constant") {
@@ -76,6 +78,7 @@ NeuralNetwork::NeuralNetwork(string modelPath) {
 				}
 				cout << "Added Hidden Neuron" << endl;
 			} else if(layer_type == "Output") {
+				number_outputs = n_neurons;
 				n_inputs = neurons.back().size(); // number of inputs per neuron
 				if(initer_type == "Constant") {
 					assert(initializer["Value"].is_number());
@@ -110,19 +113,9 @@ NeuralNetwork::NeuralNetwork(string modelPath) {
 	}
 
 	cout << endl;
-
-	/*double inputs[] = {1.2, 3.2, 1.3, 4.2, 2.3, 2.5, 1.0, 3.2, 1.9, 0.2};
-	std::default_random_engine randEngine;
-
-	ns = new Neuron(
-		10,
-		&ActivationFunctions::fast_sigmoid,
-		&ActivationFunctions::reverse_fast_sigmoid,
-		//NeuronInitializer::NormalInitializer(randEngine, 0.0, 1.0));
-		NeuronInitializer::ConstantInitializer(1.0));
-
-	cout << ns->evaluate(inputs) << endl;*/
-
+	cout << "=======================" << endl;
+	cout << "NeuralNetwork Loaded" << endl;
+	isLoaded = true;
 
 }
 
@@ -140,5 +133,16 @@ void NeuralNetwork::add_normal_weight_neuron(vector<Neuron*>& layer_neurons, uns
 		&ActivationFunctions::fast_sigmoid,
 		&ActivationFunctions::reverse_fast_sigmoid,
 		NeuronInitializer::NormalInitializer(randEngine, mean, deviation)));
+}
+
+vector<double> NeuralNetwork::evaluate(vector<double>& inputs) {
+	assert(inputs.size() == number_inputs);
+
+	vector<double> output;
+
+	
+
+	return output;
+
 }
 

@@ -17,10 +17,17 @@ class NeuralNetwork {
 public:
 	NeuralNetwork(string modelPath);
 
+	// Methods to implement:
+	// void saveWeights(string weightsFilePath);
+	vector<double> evaluate(vector<double>& inputs);
+	// 
+
 private:
-	json model;
-	//Neuron* ns;
+	json                     model;
 	vector<vector<Neuron*> > neurons;
+	unsigned int             number_inputs;
+	unsigned int             number_outputs;
+	bool                     isLoaded;
 
 private:
 	void add_constant_weight_neuron(vector<Neuron*>& layer_neurons, unsigned int n_inputs, double value);
