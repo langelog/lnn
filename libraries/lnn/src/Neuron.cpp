@@ -36,11 +36,11 @@ void Neuron::initialize(Initializer neuronIniter) {
 	weights = new double[n_inputs];
 	switch(neuronIniter.init) {
 	case Initializators::InitializatorType::Constant:
-		cout << "inicializando constante" << endl;
+		//cout << "inicializando constante" << endl;
 		((void (*)(double*,unsigned int,double))neuronIniter.initializatorFunction)(weights, n_inputs, *((double*)neuronIniter.vals[0]));
 		break;
 	case Initializators::InitializatorType::Gauss:
-		cout << "inicializando gauss... not yet implemented" << endl;
+		//cout << "inicializando gauss" << endl;
 		((void (*)(double*,unsigned int,std::default_random_engine&,double,double))neuronIniter.initializatorFunction)(weights, n_inputs, *((std::default_random_engine*)neuronIniter.vals[0]), *((double*)neuronIniter.vals[1]), *((double*)neuronIniter.vals[2]));
 		break;
 	}

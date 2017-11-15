@@ -22,6 +22,9 @@ private:
 	//Neuron* ns;
 	vector<vector<Neuron*> > neurons;
 
+private:
+	void add_constant_weight_neuron(vector<Neuron*>& layer_neurons, unsigned int n_inputs, double value);
+	void add_normal_weight_neuron(vector<Neuron*>& layer_neurons, unsigned int n_inputs, double mean, double deviation, default_random_engine& randEngine);
 };
 
 #endif

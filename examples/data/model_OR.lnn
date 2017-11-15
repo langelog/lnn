@@ -3,6 +3,10 @@
 	"Layers": [
 		{
 			"LayerType": "Input",
+			"Initializer": {
+				"Type": "Constant",
+				"Value": 1.0
+			},
 			"Bias": 1.0,
 			"Neurons": 2
 		},
@@ -18,7 +22,10 @@
 		},
 		{
 			"LayerType": "Output",
-			"Bias": 1.0,
+			"Initializer": {
+				"Type": "Constant",
+				"Value": 1.0
+			},
 			"Neurons": 1
 		}
 	]

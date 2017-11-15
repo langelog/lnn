@@ -11,7 +11,7 @@ void Initializators::NormalDistributionInitializer(double *weights, unsigned int
     std::normal_distribution<double> dist(mean,dev);
     for(unsigned int i=0; i<n_values; i++) {
         double val = dist(randEngine);
-        std::cout << "Value: " << val << std::endl;
+        //std::cout << "Value: " << val << std::endl;
         weights[i] = val;
     }
 }
