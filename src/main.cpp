@@ -10,7 +10,7 @@ int main(void) {
 	inputs.push_back(1.0);
 	inputs.push_back(0.0);
 
-	NeuralNetwork testNet("/Users/langelog/Git/lnn/examples/data/model_OR.lnn");
+	NeuralNetwork testNet("../examples/data/model_OR.lnn");
 
 	vector<double> result = testNet.evaluate(inputs);
 

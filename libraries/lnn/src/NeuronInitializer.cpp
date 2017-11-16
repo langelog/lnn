@@ -6,9 +6,9 @@ void Initializators::ConstantInitializer(double *weigths, unsigned int n_values,
     }
 }
 
-void Initializators::NormalDistributionInitializer(double *weights, unsigned int n_values, std::__1::default_random_engine &randEngine, double mean, double dev) {
+void Initializators::NormalDistributionInitializer(double *weights, unsigned int n_values, default_random_engine &randEngine, double mean, double dev) {
 
-    std::normal_distribution<double> dist(mean,dev);
+    normal_distribution<double> dist(mean,dev);
     for(unsigned int i=0; i<n_values; i++) {
         double val = dist(randEngine);
         //std::cout << "Value: " << val << std::endl;
@@ -25,7 +25,7 @@ void** Initializators::ConstantParamsGen(double value) {
     return vals;
 }
 
-void** Initializators::GaussParamsGen(std::__1::default_random_engine &randEngine, double mean, double dev) {
+void** Initializators::GaussParamsGen(default_random_engine &randEngine, double mean, double dev) {
     void **vals;
     double* val_mean = new double;
     double* val_dev  = new double;

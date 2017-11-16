@@ -16,8 +16,8 @@ namespace Initializators {
     void   ConstantInitializer(double* weigths, unsigned int n_values, double value);
     void** ConstantParamsGen(double value);
 
-    void   NormalDistributionInitializer(double* weights, unsigned int n_values, std::default_random_engine& randEngine, double mean, double dev);
-    void** GaussParamsGen(std::default_random_engine& randEngine, double mean=0.0, double dev=1.0);
+    void   NormalDistributionInitializer(double* weights, unsigned int n_values, default_random_engine& randEngine, double mean, double dev);
+    void** GaussParamsGen(default_random_engine& randEngine, double mean=0.0, double dev=1.0);
 
 }
 
