@@ -6,6 +6,9 @@ double ActivationFunctions::fast_sigmoid(double x) {
 double ActivationFunctions::reverse_fast_sigmoid(double x) {
     return (x>0)? (x/(x+1)) : (x/(1-x));
 }
+double ActivationFunctions::no_activation(double x) {
+	return x;
+}
 
 Neuron::Neuron(
 	unsigned int   n_inputs,
@@ -26,22 +29,25 @@ Neuron::~Neuron() {
 
 double Neuron::evaluate(double* inputs) {
 	double result = 0.0;
+	if(n_inputs == 0) // in case this is a bias neuron:
+		return activationFn(weights[0]);
 	for(unsigned int i=0; i<n_inputs; i++) {
 		result += inputs[i]*weights[i];
 	}
-	return result;//activationFn(result);
+	return activationFn(result);
 }
 
 void Neuron::initialize(Initializer neuronIniter) {
-	weights = new double[n_inputs];
+	unsigned int n_in = (n_inputs==0)? 1 : n_inputs;
+	weights = new double[n_in];
 	switch(neuronIniter.init) {
 	case Initializators::InitializatorType::Constant:
 		//cout << "inicializando constante" << endl;
-		((void (*)(double*,unsigned int,double))neuronIniter.initializatorFunction)(weights, n_inputs, *((double*)neuronIniter.vals[0]));
+		((void (*)(double*,unsigned int,double))neuronIniter.initializatorFunction)(weights, n_in, *((double*)neuronIniter.vals[0]));
 		break;
 	case Initializators::InitializatorType::Gauss:
 		//cout << "inicializando gauss" << endl;
-		((void (*)(double*,unsigned int,std::default_random_engine&,double,double))neuronIniter.initializatorFunction)(weights, n_inputs, *((std::default_random_engine*)neuronIniter.vals[0]), *((double*)neuronIniter.vals[1]), *((double*)neuronIniter.vals[2]));
+		((void (*)(double*,unsigned int,std::default_random_engine&,double,double))neuronIniter.initializatorFunction)(weights, n_in, *((std::default_random_engine*)neuronIniter.vals[0]), *((double*)neuronIniter.vals[1]), *((double*)neuronIniter.vals[2]));
 		break;
 	}
 }

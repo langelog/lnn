@@ -102,9 +102,9 @@ NeuralNetwork::NeuralNetwork(string modelPath) {
 		if(layer["Bias"].is_number()) {
 			// there is a bias neuron to implement:
 			layer_neurons.push_back(new Neuron(
-				1,
-				&ActivationFunctions::fast_sigmoid,
-				&ActivationFunctions::reverse_fast_sigmoid,
+				0,
+				&ActivationFunctions::no_activation,//&ActivationFunctions::fast_sigmoid,
+				&ActivationFunctions::no_activation,//&ActivationFunctions::reverse_fast_sigmoid,
 				NeuronInitializer::ConstantInitializer(layer["Bias"])));
 			cout << "Added a Bias neuron" << endl;
 		}
@@ -140,7 +140,58 @@ vector<double> NeuralNetwork::evaluate(vector<double>& inputs) {
 
 	vector<double> output;
 
-	
+	///////////////////////////////////////////////////////////////////////////
+	/*cout << "Network has " << neurons.size() << " layers" << endl;
+	cout << "Inputs are: " << endl;
+
+	for(size_t i=0; i<number_inputs; i++) {
+		cout << ": " << inputs[i] << endl;
+	}
+	for(size_t i_layer=0; i_layer<neurons.size(); i_layer++) {
+		cout << "layer " << i_layer << " has " << neurons[i_layer].size() << " neurons" << endl;
+	}*/
+	///////////////////////////////////////////////////////////////////////////
+
+	// initialize input values for input layer:
+	double* vals_in  = (double*)malloc(inputs.size()*sizeof(double));
+	// initialize output values for input layer:
+	double* vals_out = (double*)malloc(neurons[0].size()*sizeof(double));
+	// pass input values to input array:
+	for(unsigned int i=0; i<inputs.size(); i++) {
+		vals_in[i] = inputs[i];
+	}
+
+	// iterate for input layer:
+	vector<Neuron*>& layer = neurons[0];
+	for(unsigned int i_neuron=0; i_neuron<layer.size(); i_neuron++) {
+		vals_out[i_neuron] = layer[i_neuron]->evaluate(&vals_in[i_neuron]);
+		//cout << "Output: " << vals_out[i_neuron] << endl;
+	}
+
+	// iterate for the rest of layers:
+	for(unsigned int i_layer=1; i_layer<neurons.size(); i_layer++) {
+		//cout << "--" << endl;
+		vector<Neuron*>& layer = neurons[i_layer];
+		double* temp = vals_in;
+		vals_in  = vals_out;
+		vals_out = temp;
+
+		vals_out = (double*)realloc(vals_out, layer.size()*sizeof(double));
+
+		for(unsigned int i_neuron=0; i_neuron<layer.size(); i_neuron++) {
+			vals_out[i_neuron] = layer[i_neuron]->evaluate(vals_in);
+			//cout << "Output: " << vals_out[i_neuron] << endl;
+		}
+	}
+
+	unsigned int n_outputs = neurons.back().size();
+
+	for(unsigned int i=0; i<n_outputs; i++) {
+		output.push_back(vals_out[i]);
+	}
+
+	free(vals_in);
+	free(vals_out);
 
 	return output;
 

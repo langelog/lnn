@@ -23,10 +23,11 @@
 		{
 			"LayerType": "Output",
 			"Initializer": {
-				"Type": "Constant",
-				"Value": 1.0
+				"Type": "Normal",
+				"Mean": 0.0,
+				"Deviation": 1.0
 			},
-			"Neurons": 1
+			"Neurons": 2
 		}
 	]
 }

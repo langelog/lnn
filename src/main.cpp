@@ -13,6 +13,12 @@ int main(void) {
 	NeuralNetwork testNet("/Users/langelog/Git/lnn/examples/data/model_OR.lnn");
 
 	vector<double> result = testNet.evaluate(inputs);
+
+	cout << "Output of network is: [" << result[0];
+	for(size_t i=1; i<result.size(); i++) {
+		cout << "," << result[i];
+	}
+	cout << "]" << endl;
 	
 	return 0;
 }

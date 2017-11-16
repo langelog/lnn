@@ -12,6 +12,8 @@ using namespace std;
 namespace ActivationFunctions {
     double fast_sigmoid(double x);
     double reverse_fast_sigmoid(double x);
+
+    double no_activation(double x);
 }
 
 class Neuron {
